@@ -90,6 +90,39 @@ function getTimeRemaining(endtime) {
         }
 }
 
-setClock('.timer', deadLine)
+setClock('.timer', deadLine);
 
+
+//Модальное окно 
+
+const modalTrigger = document.querySelectorAll('[data-modal]'),
+      modal = document.querySelector('.modal'),
+      modalCloseBtn = document.querySelector('[data-close]');
+
+function openModal(){
+    modal.classList.toggle('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+    modal.classList.toggle('show');
+    document.body.style.overflow = '';
+}
+
+modalTrigger.forEach( btn =>{
+    btn.addEventListener('click', openModal)});
+
+modalCloseBtn.addEventListener('click' , closeModal);
+
+modal.addEventListener('click', (event) =>{
+    if(event.target === event.currentTarget){
+        closeModal();
+    }
+});
+
+document.addEventListener('keydown', (event) =>{
+    if(event.key === 'Escape' && modal.classList.contains('show')){
+        closeModal();
+    }
+})
 });
